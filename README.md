@@ -1,29 +1,112 @@
-# Air_canvas-ml-model
-Ever wished to capture your imagination by just waving your finger in the air? In this post, we have an Air Canvas that can draw anything on it by simply moving our hands and observing the landmark on the hand knuckles. A virtual drawing tool (Computer vision project) that allows you to draw in the air using hand gestures, thanks to the powerful combination of OpenCV and MediaPipe.
+# ✨ Air Canvas ML Model
 
-🔧 Tools and Libraries Used:
+> **Author:** *Amrish Kumar*
 
-Python3 , NumPy , opencv , mediapipe
+---
+## 🚀 Project Overview
 
-OpenCV: This open-source library is essential for real-time computer vision tasks. It helped me capture and process video frames from the webcam seamlessly.
+Ever wished to capture your imagination by simply waving your finger in the air? **Air Canvas ML** brings your drawings to life, using real-time computer vision and machine learning to let you sketch in mid-air. No touch—just gestures!
 
-MediaPipe: Developed by Google, MediaPipe is a fantastic framework for building multimodal machine learning pipelines. In this project, I used MediaPipe for hand tracking, enabling accurate and real-time recognition of hand landmarks.
+---
+## 🛠️ Technology Choices & Justification
 
-How It Works:
+- **Python**: Fast prototyping, huge ecosystem for CV/ML.
+- **OpenCV**: Robust, industry-standard for real-time image/video processing and UI overlays.
+- **MediaPipe**: Google's advanced hand tracking framework, efficient and easy for gesture recognition.
+- **NumPy**: High-performance numerical operations for image arrays.
+- **collections.deque**: Fast and memory-efficient storage for stroke points.
 
-Capture Video: Using OpenCV, the script captures live video feed from the webcam.
-Process Frames: Each frame is processed using MediaPipe to detect and track hand landmarks.
-Draw Landmarks: The detected hand landmarks are drawn on the video frames, creating a virtual canvas for drawing in the air.
-Algorithm
-Start reading the frames and convert the captured frames to HSV colour space.(Easy for colour detection)
+*Combining these, we deliver a smooth, interactive experience for air drawing!*
 
-Prepare the canvas frame and put the respective ink buttons on it.
+---
+## 🎨 Features & UI Highlights
 
-Adjust the values of the mediapipe utilization to detect one hand only.
+- **Modern Dark Mode Canvas**  
+  Enhanced visibility and style for your sketches.
 
-Detect the landmarks by passing the RGB frame to the mediapipe hand detector.
+- **Sleek, Rounded Color Buttons with Live Highlight**  
+  Intuitive color selection with animated borders, emoji icons, and easy visual feedback.
 
-Detect the landmarks, find the forefinger coordinates and keep storing them in the array for successive frames.(Arrays for drawing points on canvas)
+- **Clear Button with Animated Trash Icon**  
+  Instantly erase your canvas with a single gesture.
 
-Finally, draw the points stored in an array on the frames and canvas.
+- **Real-Time Hand Tracking Overlay**  
+  See your detected hand landmarks live as a semi-transparent guide.
 
+- **Dynamic Gesture Hints & Instructions**  
+  Always know how to interact—helpful overlays guide you.
+
+- **Undo/Redo (optional)**  
+  Go back and forth between recent strokes.
+
+---
+
+## ✋ Gesture Recognition Logic
+
+**Air Canvas ML** uses intelligent hand landmark tracking (via MediaPipe) to identify four main gestures:
+
+| Gesture         | How it Works                                                                                 |
+|-----------------|---------------------------------------------------------------------------------------------|
+| **Draw**        | Track the tip of the index finger (`landmark 8`). If away from thumb, record movement.      |
+| **Pause (Lift)**| Thumb (`landmark 4`) close to index tip vertically (<30px): stops drawing, starts new stroke|
+| **Select Color**| Move fingertip into any top-bar zone: <br> - Blue: `160-255`px <br> - Green: `275-370`px <br> - Red: `390-485`px <br> - Yellow: `505-600`px                                       |
+| **Clear**       | Move fingertip into "Clear" button zone (`40-140`px): all strokes reset, canvas erased      |
+
+---
+
+## 🖼️ User Interface Preview
+
+![UI Preview](https://user-images.githubusercontent.com/821285086/demo-ui-preview.png) <!-- Optional: Add a real screenshot or mockup! -->
+
+| Button | Action       | Emoji/Icon |
+|--------|--------------|------------|
+| Blue   | Draw Blue    | 🟦         |
+| Green  | Draw Green   | 🟩         |
+| Red    | Draw Red     | 🟥         |
+| Yellow | Draw Yellow  | 🟨         |
+| Clear  | Erase Canvas | 🗑️         |
+
+Current color is highlighted with a bright border!
+
+---
+
+## 📝 Getting Started
+
+### 1. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Run the App
+```bash
+python air canvas ml.py
+```
+Press **Q** to exit.
+
+---
+
+## 📋 Requirements
+
+See [`requirements.txt`](./requirements.txt) for full details:
+```text
+opencv-python
+mediapipe
+numpy
+```
+
+---
+
+## 📖 License
+
+MIT
+
+---
+
+## 💬 Contact
+
+Questions, feedback, or want to collaborate?  
+Find me on GitHub: [Coderamrish](https://github.com/Coderamrish)
+
+---
+
+*Bring your imagination to life—draw without boundaries!*
